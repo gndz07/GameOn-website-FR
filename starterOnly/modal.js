@@ -20,4 +20,10 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+// close modal form on clicking on close (X) sign
+const closeBtn = document.getElementsByClassName("close");
+ closeBtn[0].addEventListener("click", function () {
+ 	modalbg.style.display = "none";
+ });
+
 
