@@ -552,3 +552,8 @@ footer {
   }
 }
 
+
+.result {
+  font-size: 0.6em;
+  margin-bottom: 8px; 
+}
