@@ -327,14 +327,23 @@ function validateForm () {
 
  	if (valid) {
  		var successMessage = document.getElementById("formResult");
+ 		var successMessageText = document.getElementById("formResultText");
  		var message = "Merci ! Votre réservation a été reçu.";
- 		successMessage.textContent = message;
+ 		successMessageText.textContent = message;
  		successMessage.style.display = "block";
 
- 		setTimeout("location.href = 'index2.html';", 4000);
+ 		
 
  	}
 
  	return valid;
  	
+ };
+
+
+ //Close button on modal
+ var modalCloseBtn = document.getElementById("close-btn--validation");
+ modalCloseBtn.style.marginTop = "310px";
+ modalCloseBtn.onclick = function() {
+ 	location.href = "index.html";
  };
