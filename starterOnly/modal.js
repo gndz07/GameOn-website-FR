@@ -128,7 +128,7 @@ email.addEventListener('blur', function() {
  	} else {
  		valid;
  		emailResult.textContent = "";
- 		changeBorder(2);
+ 		changeBackBorder(2);
  	}
  	return valid;
 });
