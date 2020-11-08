@@ -234,6 +234,8 @@ input {
   height: 48px;
 
 }
+
+/*
 .formData[data-error]::after {
   content: attr(data-error);
   font-size: 0.4em;
@@ -252,7 +254,7 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-/* 
+
 input[data-error]::after {
     content: attr(data-error);
     font-size: 0.4em;
@@ -584,8 +586,12 @@ footer {
 
 .result {
   font-size: 0.6em;
-  margin-bottom: 8px; 
-  color: red;
+  color: #e54858;
+  display: block;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  text-align: right;
+  line-height: 0.3;
 }
 
 #formResult {

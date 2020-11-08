@@ -65,7 +65,7 @@ var valid = true;
 var inputField = document.getElementsByClassName("text-control");
 
 function changeBorder(i) {
-	inputField[i].style.borderColor = "red";
+	inputField[i].style.border = "2px solid #e54858";
 	};
 
 //when input is valid
@@ -332,8 +332,6 @@ function validateForm () {
  		successMessageText.textContent = message;
  		successMessage.style.display = "block";
 
- 		
-
  	}
 
  	return valid;
@@ -342,8 +340,18 @@ function validateForm () {
 
 
  //Close button on modal
+
+ //close button DOM
  var modalCloseBtn = document.getElementById("close-btn--validation");
+
+ //close button position
  modalCloseBtn.style.marginTop = "310px";
+
+ //redirecting to index.html on click
  modalCloseBtn.onclick = function() {
- 	location.href = "index.html";
+ 	var successMessage = document.getElementById("formResult");
+
+ 	modalbg.style.display = "none";
+ 	document.querySelector("form").reset();
+ 	successMessage.style.display = "none";
  };
