@@ -76,7 +76,7 @@ img {
   }
 
   .topnav {
-    padding-top: 20px;
+    padding-top: 15px;
     margin-top: 30px;
   }
 
@@ -527,12 +527,12 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 1.5em;
+    font-size: 1.3em;
     white-space: normal;
     font-weight: 600;
   }
   .hero-text {
-    font-size: 0.8em;
+    font-size: 0.7em;
     margin-top: 15px;
   }
   .hero-img img {
@@ -556,8 +556,16 @@ footer {
     margin-left: -20px;
   }
 
+
+  .hero-headline {
+    font-size: 1.1em;
+    white-space: normal;
+    font-weight: 600;
+  }
+
   .hero-text {
     width: 90%;
+    font-size: 0.6em;
   }
 }
 
