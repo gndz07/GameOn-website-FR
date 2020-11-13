@@ -20,7 +20,6 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-
 //DOM element for (X) button
 const closeBtn = document.querySelectorAll(".close");
 
@@ -28,11 +27,8 @@ const closeBtn = document.querySelectorAll(".close");
 function closeModal() {
 	modalbg.style.display = "none";
 }
-
 // close modal form on clicking on close (X) sign
  closeBtn.forEach((btn) => btn.addEventListener("click", closeModal));
-
-
 
 //on blur form verification
 
@@ -46,141 +42,111 @@ function closeModal() {
  var checkbox1 = document.getElementById("checkbox1");
 
 
- //DOM for validation result
- var firstNameResult = document.getElementById("firstResult");
- var lastNameResult = document.getElementById("lastResult");
- var emailResult = document.getElementById("emailResult");
- var birthdateResult = document.getElementById("birthdateResult");
- var quantityResult = document.getElementById("quantityResult");
- var radioResult = document.getElementById("radioResult");
- var checkboxResult = document.getElementById("checkboxResult");
-
+//made formData into an array
+var formDataArr = Array.from(formData);
 
 //form validation onblur
-
 //valid condition
 var valid = true;
+var message = "";
 
-//change border color when input is invalid
-var inputField = document.getElementsByClassName("text-control");
-
-function changeBorder(i) {
-	inputField[i].style.border = "2px solid #e54858";
-	};
-
-//when input is valid
-function changeBackBorder(i) {
-	inputField[i].style.border = "none";
+//function to add attribute to show error message
+function showError(index) {
+	formDataArr[index].setAttribute("data-error", message);
+	formDataArr[index].setAttribute("data-error-visible", true);
 };
 
+//function to hide error when input is valid
+function hideError(index) {
+	formDataArr[index].removeAttribute("data-error");
+	formDataArr[index].removeAttribute("data-error-visible");
+};
 
-//first name validation
-firstName.addEventListener('blur', function() {
+//first name validation function
+function validateFirstName() {
 	if (firstName.value.length < 2) {
  		valid = false;
  		message = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
-		firstNameResult.textContent = message;
-
-		changeBorder(0);
- 		
+		showError(0);		
  	} else {
  		valid;
- 		firstNameResult.textContent = "";
- 		changeBackBorder(0);
+ 		hideError(0);	
  	}
-
  	return valid;
- });
+ };
+//onblur validation
+firstName.addEventListener('blur', validateFirstName);
 
-
-
-//last name validation
-lastName.addEventListener('blur', function() {
+//last name validation function
+function validateLastName() {
 	if (lastName.value.length < 2) {
  		valid = false;
  		message = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-
- 		lastNameResult.textContent = message;
-
- 		changeBorder(1);
+ 		showError(1);
 
  	} else {
  		valid;
- 		lastNameResult.textContent = "";
- 		changeBackBorder(1);
+ 		hideError(1);
  	}
  	return valid;
-});
+ };
+ //onblur validation
+lastName.addEventListener('blur', validateLastName);
 
-
-
-//email validation
-email.addEventListener('blur', function() {
+//email validation function
+function validateEmail() {
 	var regexEmail = /.+@.+\..+/;
  	if (!regexEmail.test(email.value)) {
  		valid = false;
  		message = "Veuillez entrer une adresse email valide.";
-
- 		emailResult.textContent = message;
-
- 		changeBorder(2);
-
+ 		showError(2);
  	} else {
  		valid;
- 		emailResult.textContent = "";
- 		changeBackBorder(2);
+ 		hideError(2);
  	}
  	return valid;
-});
+};
+//onblur validation
+email.addEventListener('blur', validateEmail);
 
-
-
-//birthdate validation
-birthdate.addEventListener('blur', function() {
+//birthdate validation function
+function validateBirthdate() {
 	var regexBirthdate = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
- 	// /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/;
  	
  	if (!regexBirthdate.test(birthdate.value)) {
  		valid = false;
  		message = "Veuillez entrer votre date de naissance au format jj/mm/aaaa.";
-
- 		birthdateResult.textContent = message;
-
- 		changeBorder(3);
+		showError(3);
 
  	} else {
  		valid;
- 		birthdateResult.textContent = "";
- 		changeBackBorder(3);
+ 		hideError(3);
  	}
  	return valid;
-});
+ };
 
+//onblur validation
+birthdate.addEventListener('blur', validateBirthdate);
 
-
-//quantity validation
-quantity.addEventListener('blur', function() {
+//quantity validation function
+function validateQuantity() {
 	var regexQuantity = /\d/;
  	if (!regexQuantity.test(quantity.value)) {
  		valid = false;
  		message = "Veuillez entrer des chiffres pour nous informer votre précédente(s) participation(s).";
- 	
- 		quantityResult.textContent = message;
- 		changeBorder(4);
-
+ 		showError(4);
  	} else {
  		valid;
- 		quantityResult.textContent = "";
- 		changeBackBorder(4);
+ 		hideError(4);
  	}
  	return valid;
- });	
+ };
+
+//onblur validation
+quantity.addEventListener('blur', validateQuantity);
 
 
-
-
-
- //onsubmit form verification
+//onsubmit form verification
 
 //submit button DOM
 var submitButton = document.querySelector('input[type="submit"]');
@@ -205,99 +171,31 @@ function validate (e) {
  		};
 
  		//mock localhost server
- 		//request.open("POST", "http://localhost/projet4-oc/content.json", true);
- 		//request.setRequestHeader("Content-Type", "application/json");
- 		//request.send(JSON.stringify());
+ 		request.open("POST", "http://localhost/projet4-oc/content.json", true);
+ 		request.setRequestHeader("Content-Type", "application/json");
+ 		request.send(JSON.stringify());
  	};
-
-
 
 //validate form input onsubmit
 
 //function to validate form onsubmit
 function validateForm () {
-
-
  	// validation status
-
  	var valid = true;
- 	
-
-
  	//first name validation
-
- 	if (firstName.value.length < 2) {
- 		valid = false;
- 		message = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
-
- 		firstNameResult.textContent = message;
- 	} else {
- 		valid;
- 		firstNameResult.textContent = "";
- 	};
-
-
+ 	validateFirstName();
  	//last name validation
- 	if (lastName.value.length < 2) {
- 		valid = false;
- 		message = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-
- 		lastNameResulttextContent = message;
- 	} else {
- 		valid;
- 		lastNameResult.textContent = "";
- 	};
-
-
+ 	validateLastName();
  	//email validation
- 	var regexEmail = /.+@.+\..+/;
- 	if (!regexEmail.test(email.value)) {
- 		valid = false;
- 		message = "Veuillez entrer une adresse email valide.";
-
- 		emailResult.textContent = message;
- 	} else {
- 		valid;
- 		emailResult.textContent = "";
- 	};
-
-
-
+ 	validateEmail();
  	//birthdate validation
- 	var regexBirthdate = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
- 	
- 	
- 	if (!regexBirthdate.test(birthdate.value)) {
- 		valid = false;
- 		message = "Veuillez entrer votre date de naissance au format jj/mm/aaaa.";
-
- 		birthdateResult.textContent = message;
- 	} else {
- 		valid;
- 		birthdateResult.textContent = "";
- 	};
-
-
-
+ 	validateBirthdate();
  	//quantity validation
- 	var regexQuantity = /\d/;
- 	if (!regexQuantity.test(quantity.value)) {
- 		valid = false;
- 		message = "Veuillez entrer des chiffres pour nous informer votre précédente(s) participation(s).";
- 	
- 		quantityResult.textContent = message;
- 	} else {
- 		valid;
- 		quantityResult.textContent = "";
- 	};
-
-
+ 	validateQuantity();
 
  	//location radio button validation
- 	
  	//Change the checkboxInput NodeList into an array
  	var checkboxArray = Array.from(checkboxInput);
-
  	//filter the checked input
  	var checkboxInputChecked = checkboxArray.filter(input => input.checked);
  	
@@ -305,24 +203,22 @@ function validateForm () {
  	if (checkboxInputChecked.length < 1) {
  		valid = false;
  		message = "Veuillez choisir une ville.";
-
- 		radioResult.textContent = message;
+ 		formDataArr[5].setAttribute("data-error", message);
+		formDataArr[5].setAttribute("data-error-visible", true);
  	} else {
  		valid;
- 		radioResult.textContent = "";
+ 		hideError(5);
  	};
 
-
  	//T&C checkbox validation
-
  	if (!checkbox1.checked) {
  		valid = false;
  		message = "Veuillez accepter les conditions d'utilisations."
-
- 		checkboxResult.textContent = message;
+ 		formDataArr[6].setAttribute("data-error", message);
+		formDataArr[6].setAttribute("data-error-visible", true);
  	} else {
  		valid;
- 		checkboxResult.textContent = "";
+ 		hideError(6);
  	};
 
  	if (valid) {
@@ -333,24 +229,17 @@ function validateForm () {
  		successMessage.style.display = "block";
 
  	}
-
  	return valid;
- 	
  };
 
-
  //Close button on modal
-
  //close button DOM
  var modalCloseBtn = document.getElementById("close-btn--validation");
-
  //close button position
- modalCloseBtn.style.marginTop = "310px";
-
+ modalCloseBtn.style.marginTop = "250px";
  //redirecting to index.html on click
  modalCloseBtn.onclick = function() {
  	var successMessage = document.getElementById("formResult");
-
  	modalbg.style.display = "none";
  	document.querySelector("form").reset();
  	successMessage.style.display = "none";
