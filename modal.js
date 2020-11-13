@@ -158,30 +158,13 @@ function validate (e) {
 	e.preventDefault();
 
 	var request = new XMLHttpRequest();
-
- 		request.onreadystatechange = function () {
- 			if(request.readyState === XMLHttpRequest.DONE) {
- 				var status = request.status;
- 				if (status === 0 || (status >= 200 && status < 400)) {
- 					validateForm();
- 				} else {
- 					//error
- 				}
- 			}
- 		};
-
- 		//mock localhost server
- 		request.open("POST", "http://localhost/projet4-oc/content.json", true);
- 		request.setRequestHeader("Content-Type", "application/json");
- 		request.send(JSON.stringify());
- 	};
-
+	request.onload = validateForm();
+}
 //validate form input onsubmit
 
 //function to validate form onsubmit
 function validateForm () {
- 	// validation status
- 	var valid = true;
+ 	valid = true;
  	//first name validation
  	validateFirstName();
  	//last name validation
