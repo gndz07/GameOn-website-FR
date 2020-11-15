@@ -507,6 +507,7 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
+
   .hero-section {
     display: flex;
     flex-direction: column;
@@ -566,6 +567,11 @@ footer {
     width: 90%;
     font-size: 0.6em;
   }
+
+  footer {
+		margin-top: -100px;
+	}
+
 }
 
 
