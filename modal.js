@@ -31,7 +31,6 @@ function closeModal() {
  closeBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 
 //on blur form verification
-
 //DOM for all input fields
  var firstName = document.getElementById("first");
  var lastName = document.getElementById("last");
@@ -40,7 +39,6 @@ function closeModal() {
  var quantity = document.getElementById("quantity");
  var checkboxInput = document.querySelectorAll('input[name="location"]');
  var checkbox1 = document.getElementById("checkbox1");
-
 
 //made formData into an array
 var formDataArr = Array.from(formData);
@@ -124,7 +122,6 @@ function validateBirthdate() {
  	}
  	return valid;
  };
-
 //onblur validation
 birthdate.addEventListener('blur', validateBirthdate);
 
@@ -145,9 +142,7 @@ function validateQuantity() {
 //onblur validation
 quantity.addEventListener('blur', validateQuantity);
 
-
 //onsubmit form verification
-
 //submit button DOM
 var submitButton = document.querySelector('input[type="submit"]');
 //validation on clicking the submit button
@@ -204,6 +199,7 @@ function validateForm () {
  		hideError(6);
  	};
 
+ 	//valid form, show success message
  	if (valid) {
  		var successMessage = document.getElementById("formResult");
  		var successMessageText = document.getElementById("formResultText");

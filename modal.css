@@ -179,7 +179,7 @@ main {
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 500px) {
   .bground {
     background-color: rgba(26, 39, 156, 0);
   }
@@ -534,6 +534,7 @@ footer {
   .hero-text {
     font-size: 0.7em;
     margin-top: 15px;
+    width: 85vw;
   }
   .hero-img img {
     border-radius: 10px;
