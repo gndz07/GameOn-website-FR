@@ -46,10 +46,9 @@ var formDataArr = Array.from(formData);
 //form validation onblur
 //valid condition
 var valid = true;
-var message = "";
 
 //function to add attribute to show error message
-function showError(index) {
+function showError(index, message) {
 	formDataArr[index].setAttribute("data-error", message);
 	formDataArr[index].setAttribute("data-error-visible", true);
 };
@@ -65,7 +64,7 @@ function validateFirstName() {
 	if (firstName.value.length < 2) {
  		valid = false;
  		message = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
-		showError(0);		
+		showError(0, message);		
  	} else {
  		valid;
  		hideError(0);	
@@ -80,7 +79,7 @@ function validateLastName() {
 	if (lastName.value.length < 2) {
  		valid = false;
  		message = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
- 		showError(1);
+ 		showError(1, message);
 
  	} else {
  		valid;
@@ -97,7 +96,7 @@ function validateEmail() {
  	if (!regexEmail.test(email.value)) {
  		valid = false;
  		message = "Veuillez entrer une adresse email valide.";
- 		showError(2);
+ 		showError(2, message);
  	} else {
  		valid;
  		hideError(2);
@@ -114,7 +113,7 @@ function validateBirthdate() {
  	if (!regexBirthdate.test(birthdate.value)) {
  		valid = false;
  		message = "Veuillez entrer votre date de naissance au format jj/mm/aaaa.";
-		showError(3);
+		showError(3, message);
 
  	} else {
  		valid;
@@ -131,7 +130,7 @@ function validateQuantity() {
  	if (!regexQuantity.test(quantity.value)) {
  		valid = false;
  		message = "Veuillez entrer des chiffres pour nous informer votre précédente(s) participation(s).";
- 		showError(4);
+ 		showError(4, message);
  	} else {
  		valid;
  		hideError(4);
@@ -181,8 +180,7 @@ function validateForm () {
  	if (checkboxInputChecked.length < 1) {
  		valid = false;
  		message = "Veuillez choisir une ville.";
- 		formDataArr[5].setAttribute("data-error", message);
-		formDataArr[5].setAttribute("data-error-visible", true);
+ 		showError(5, message)
  	} else {
  		valid;
  		hideError(5);
@@ -192,8 +190,7 @@ function validateForm () {
  	if (!checkbox1.checked) {
  		valid = false;
  		message = "Veuillez accepter les conditions d'utilisations."
- 		formDataArr[6].setAttribute("data-error", message);
-		formDataArr[6].setAttribute("data-error-visible", true);
+ 		showError(6, message)
  	} else {
  		valid;
  		hideError(6);
