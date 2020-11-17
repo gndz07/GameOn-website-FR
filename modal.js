@@ -60,8 +60,10 @@ function hideError(index) {
 };
 
 //first name validation function
+//regex for name formats, not allowing space at the start and end
+var nameRegex = /^[^\s][^\s]$/;
 function validateFirstName() {
-	if (firstName.value.length < 2) {
+	if (!nameRegex.test(firstName.value) || firstName.value.length < 2) {
  		valid = false;
  		message = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
 		showError(0, message);		
@@ -76,7 +78,7 @@ firstName.addEventListener('blur', validateFirstName);
 
 //last name validation function
 function validateLastName() {
-	if (lastName.value.length < 2) {
+	if (!nameRegex.test(lastName.value) || lastName.value.length < 2) {
  		valid = false;
  		message = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
  		showError(1, message);
