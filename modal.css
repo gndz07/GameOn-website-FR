@@ -245,6 +245,7 @@ input {
   line-height: 0.3;
   opacity: 0;
   transition: 0.3s;
+  line-height: 1em;
 }
 .formData[data-error-visible="true"]::after {
   opacity: 1;
